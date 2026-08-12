@@ -1,251 +1,265 @@
 /* ==========================================================================
-   1. VARIÁVEIS E CONFIGURAÇÕES BASE
+   1. VARIÁVEIS E TEMA DARK MODERNO
    ========================================================================== */
 :root {
-  /* Cores Principais */
-  --bg-main: #f8fafc;
-  --card-bg: #ffffff;
-  --text-main: #0f172a;
-  --text-muted: #475569;
+  --bg-dark: #0f172a;
+  --bg-card: rgba(30, 41, 59, 0.7);
+  --border-card: rgba(255, 255, 255, 0.1);
   
-  /* Cores de Ação e Destaque */
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --secondary: #16a34a;
-  --secondary-hover: #15803d;
-  --accent: #ea580c;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
   
-  /* Estrutura e Estilização */
-  --border-color: #e2e8f0;
-  --focus-ring: #38bdf8;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-
-  /* Tipografia */
-  --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --base-font-size: 100%;
+  --accent-cyan: #06b6d4;
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  --accent-green: #10b981;
+  
+  --gradient-btn: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --gradient-btn-hover: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --gradient-glow: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-/* Modo Alto Contraste Extremo (Acessibilidade) */
+/* Modo de Alto Contraste para Acessibilidade */
 body.high-contrast {
-  --bg-main: #000000 !important;
-  --card-bg: #0a0a0a !important;
-  --text-main: #ffff00 !important;
-  --text-muted: #ffffff !important;
-  --primary: #00ffff !important;
-  --primary-hover: #ffffff !important;
-  --secondary: #00ff00 !important;
-  --border-color: #ffff00 !important;
-  --focus-ring: #ffffff !important;
+  --bg-dark: #000000;
+  --bg-card: #000000;
+  --border-card: #ffff00;
+  --text-main: #ffff00;
+  --text-muted: #ffffff;
+  --accent-cyan: #00ffff;
+  --gradient-btn: #ffff00;
 }
 
 body.high-contrast .btn {
-  background-color: #ffff00 !important;
   color: #000000 !important;
+  background: #ffff00 !important;
   border: 2px solid #ffffff !important;
 }
 
+/* ==========================================================================
+   2. RESET E ESTRUTURA GERAL
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
-  font-size: var(--base-font-size);
   scroll-behavior: smooth;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 body {
-  background-color: var(--bg-main);
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+  background-attachment: fixed;
   color: var(--text-main);
-  font-family: var(--font-stack);
-  line-height: 1.7;
-  padding-bottom: 3rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: var(--font-family);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding-bottom: 4rem;
 }
 
 /* ==========================================================================
-   2. ACESSIBILIDADE E BARRAS DE NAVEGAÇÃO
+   3. BARRA SUPERIOR DE FERRAMENTAS / NAVEGAÇÃO
    ========================================================================== */
+.a11y-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-card);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.controls-group {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Link de salto por teclado */
 .skip-link {
   position: absolute;
   top: -100px;
   left: 1rem;
-  background: #000000;
-  color: #ffffff;
-  padding: 0.75rem 1.25rem;
-  font-weight: 700;
-  z-index: 9999;
+  background: var(--accent-cyan);
+  color: #000;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
   border-radius: var(--radius-sm);
   text-decoration: none;
-  transition: top 0.2s ease;
+  z-index: 9999;
 }
 
 .skip-link:focus {
   top: 1rem;
 }
 
-:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 3px;
-}
-
-.a11y-bar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: var(--card-bg);
-  border-bottom: 2px solid var(--border-color);
-  padding: 0.75rem 1.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(8px);
-}
-
-.controls-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  align-items: center;
-}
-
 /* ==========================================================================
-   3. BOTÕES E COMPONENTES INTERATIVOS
+   4. BOTÕES E LINKS DE AÇÃO
    ========================================================================== */
 .btn {
-  background-color: var(--primary);
+  background: var(--gradient-btn);
   color: #ffffff;
   border: none;
-  padding: 0.6rem 1.2rem;
+  padding: 0.7rem 1.4rem;
   font-size: 0.95rem;
   font-weight: 600;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  min-height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   text-decoration: none;
-  transition: all 0.2s ease;
-  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
 }
 
 .btn:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.btn:active {
-  transform: translateY(0);
+  background: var(--gradient-btn-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
 }
 
 .btn-secondary {
-  background-color: var(--secondary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-card);
+  color: var(--text-main);
+  box-shadow: none;
 }
 
 .btn-secondary:hover {
-  background-color: var(--secondary-hover);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-cyan);
 }
 
-.btn-outline {
-  background-color: transparent;
-  color: var(--primary);
-  border: 2px solid var(--primary);
-}
-
-.btn-outline:hover {
-  background-color: var(--primary);
-  color: #ffffff;
-}
-
-/* Link direto configurado no estilo de botão de ação principal */
+/* Botão em destaque para o Link Direto do Site */
 .site-direct-link {
-  background-color: var(--accent);
-  color: #ffffff;
+  background: var(--gradient-glow);
+  color: #000000;
   font-weight: 700;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
 }
 
 .site-direct-link:hover {
-  background-color: #c2410c;
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.8);
+  transform: scale(1.03);
 }
 
 /* ==========================================================================
-   4. ESTRUTURA PRINCIPAL E CARDS
+   5. CABEÇALHO E MÁXIMA ESTRUTURA
    ========================================================================== */
 header {
   text-align: center;
-  padding: 3.5rem 1.5rem 2.5rem;
-  max-width: 900px;
+  padding: 4rem 1.5rem 2.5rem;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 header h1 {
-  font-size: 2.75rem;
-  letter-spacing: -0.025em;
-  margin-bottom: 0.75rem;
-  color: var(--primary);
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
 }
 
 header p {
   color: var(--text-muted);
-  font-size: 1.15rem;
-}
-
-body.high-contrast header h1 {
-  color: var(--text-main);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 main {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-.card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow-md);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  box-shadow: var(--shadow-lg);
-}
-
-.card h2 {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid var(--border-color);
-  padding-bottom: 0.5rem;
-  color: var(--text-main);
-}
-
-.card p {
-  margin-bottom: 1rem;
-  font-size: 1.05rem;
-  color: var(--text-muted);
+/* Grid layout de cards */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.75rem;
 }
 
 /* ==========================================================================
-   5. COMPONENTES: FORMULÁRIOS, ÁUDIO E LUPA
+   6. CARDS GLASSMORPHISM (VISUAL MODERNO)
+   ========================================================================== */
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-btn);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.card p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   7. ELEMENTOS EXTRAS (ÁUDIO, FORMULÁRIOS E LUPA)
    ========================================================================== */
 .audio-player-box {
-  background-color: rgba(37, 99, 235, 0.05);
-  border-left: 4px solid var(--primary);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-card);
+  border-left: 4px solid var(--accent-cyan);
   padding: 1.25rem;
   border-radius: var(--radius-md);
   margin: 1.5rem 0;
@@ -254,7 +268,7 @@ main {
 audio {
   width: 100%;
   margin-top: 0.5rem;
-  border-radius: var(--radius-sm);
+  filter: invert(0.9);
 }
 
 .form-group {
@@ -264,43 +278,42 @@ audio {
 .form-group label {
   display: block;
   font-weight: 600;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
   color: var(--text-main);
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 0.85rem;
+  padding: 0.85rem 1rem;
   font-size: 1rem;
-  border: 1.5px solid var(--border-color);
   border-radius: var(--radius-sm);
-  background: var(--card-bg);
-  color: var(--text-main);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--border-card);
+  color: #ffffff;
+  transition: border-color 0.2s ease;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
   outline: none;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
 }
 
 /* Lupa Virtual Flutuante */
 .magnifying-glass {
   position: fixed;
-  border: 3px solid var(--primary);
+  border: 2px solid var(--accent-cyan);
   border-radius: 50%;
   cursor: none;
   width: 160px;
   height: 160px;
   pointer-events: none;
   display: none;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
   z-index: 9999;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: contrast(120%);
+  backdrop-filter: contrast(130%) brightness(110%);
 }
 
 body.magnifier-enabled .readable-zone {
@@ -308,23 +321,23 @@ body.magnifier-enabled .readable-zone {
 }
 
 /* ==========================================================================
-   6. RESPONSIVIDADE
+   8. RESPONSIVIDADE
    ========================================================================== */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .a11y-bar {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .controls-group {
     justify-content: center;
   }
-  
+
   header h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
-  
+
   .card {
-    padding: 1.25rem;
+    padding: 1.5rem;
   }
 }
