@@ -1,0 +1,343 @@
+/* ==========================================================================
+   1. VARIÁVEIS E TEMA DARK MODERNO
+   ========================================================================== */
+:root {
+  --bg-dark: #0f172a;
+  --bg-card: rgba(30, 41, 59, 0.7);
+  --border-card: rgba(255, 255, 255, 0.1);
+  
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  
+  --accent-cyan: #06b6d4;
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  --accent-green: #10b981;
+  
+  --gradient-btn: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --gradient-btn-hover: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --gradient-glow: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Modo de Alto Contraste para Acessibilidade */
+body.high-contrast {
+  --bg-dark: #000000;
+  --bg-card: #000000;
+  --border-card: #ffff00;
+  --text-main: #ffff00;
+  --text-muted: #ffffff;
+  --accent-cyan: #00ffff;
+  --gradient-btn: #ffff00;
+}
+
+body.high-contrast .btn {
+  color: #000000 !important;
+  background: #ffff00 !important;
+  border: 2px solid #ffffff !important;
+}
+
+/* ==========================================================================
+   2. RESET E ESTRUTURA GERAL
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-main);
+  font-family: var(--font-family);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding-bottom: 4rem;
+}
+
+/* ==========================================================================
+   3. BARRA SUPERIOR DE FERRAMENTAS / NAVEGAÇÃO
+   ========================================================================== */
+.a11y-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-card);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.controls-group {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Link de salto por teclado */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--accent-cyan);
+  color: #000;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ==========================================================================
+   4. BOTÕES E LINKS DE AÇÃO
+   ========================================================================== */
+.btn {
+  background: var(--gradient-btn);
+  color: #ffffff;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+}
+
+.btn:hover {
+  background: var(--gradient-btn-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-card);
+  color: var(--text-main);
+  box-shadow: none;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-cyan);
+}
+
+/* Botão em destaque para o Link Direto do Site */
+.site-direct-link {
+  background: var(--gradient-glow);
+  color: #000000;
+  font-weight: 700;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+}
+
+.site-direct-link:hover {
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.8);
+  transform: scale(1.03);
+}
+
+/* ==========================================================================
+   5. CABEÇALHO E MÁXIMA ESTRUTURA
+   ========================================================================== */
+header {
+  text-align: center;
+  padding: 4rem 1.5rem 2.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+header p {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Grid layout de cards */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.75rem;
+}
+
+/* ==========================================================================
+   6. CARDS GLASSMORPHISM (VISUAL MODERNO)
+   ========================================================================== */
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-btn);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.card p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   7. ELEMENTOS EXTRAS (ÁUDIO, FORMULÁRIOS E LUPA)
+   ========================================================================== */
+.audio-player-box {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-card);
+  border-left: 4px solid var(--accent-cyan);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  margin: 1.5rem 0;
+}
+
+audio {
+  width: 100%;
+  margin-top: 0.5rem;
+  filter: invert(0.9);
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  border-radius: var(--radius-sm);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--border-card);
+  color: #ffffff;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+}
+
+/* Lupa Virtual Flutuante */
+.magnifying-glass {
+  position: fixed;
+  border: 2px solid var(--accent-cyan);
+  border-radius: 50%;
+  cursor: none;
+  width: 160px;
+  height: 160px;
+  pointer-events: none;
+  display: none;
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
+  z-index: 9999;
+  backdrop-filter: contrast(130%) brightness(110%);
+}
+
+body.magnifier-enabled .readable-zone {
+  cursor: crosshair;
+}
+
+/* ==========================================================================
+   8. RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 768px) {
+  .a11y-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .controls-group {
+    justify-content: center;
+  }
+
+  header h1 {
+    font-size: 2.2rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+}
